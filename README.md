@@ -2,7 +2,7 @@
 
 ![Picture of a shiba inu wearing a cap with the message "Fiscalização Last.fm" embroidered in it.](/doge.png)
 
-CLI for listing a user's top albums, artists or tracks of a given period. It uses webscrapping so login is not needed.
+CLI for listing a user's top albums, artists or tracks of a given period from Last.fm. It uses webscrapping so login is not needed.
 
 ## Installation
 
