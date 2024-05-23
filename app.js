@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { getEntries } = require('./utils');
+const { getEntries } = require('./scrapper');
 
 function showHelp() {
     console.log(`FISCALIZAÇÃO LAST.FM
