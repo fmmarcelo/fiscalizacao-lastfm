@@ -26,6 +26,6 @@ $ flastfm username -t -365 -p
 ```
 ## Limitations
 
-In order to avoid login and make it portable, this software can provide only what Last.fm's website provides for a unlogged visitor.
+In order to avoid login and make it portable, this software can provide only what Last.fm's website provides for an unlogged visitor.
 So you can check only fixed periods of time: last week, month, 3 months, 6 months, year or all time.
 The top number is fixed to 5 for albums and artists, and 10 for tracks.
