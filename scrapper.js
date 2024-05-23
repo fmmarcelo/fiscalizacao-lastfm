@@ -1,4 +1,5 @@
 const needle = require('needle');
+const { decodeHtmlEntities } = require('./entity-parser');
 
 const urlTemplate = 'https://www.last.fm/user/$USER/partial/$INFO?$INFO_date_preset=$PERIOD';
 
@@ -47,7 +48,7 @@ function getAlbumsAttributes(body) {
         const valueEndIndex = body.indexOf('"', valueStartIndex + 1);
         const value = body.substring(valueStartIndex + 1, valueEndIndex);
 
-        entries.push(Array.of(value, undefined, undefined));
+        entries.push(Array.of(decodeHtmlEntities(value), undefined, undefined));
     });
 
     const artistMatches = [...body.matchAll(artistClassPattern)];
@@ -68,7 +69,7 @@ function getAlbumsAttributes(body) {
 
         const playCountValue = playCount.match(playCountPattern)[1];
 
-        entries[i][1] = value;
+        entries[i][1] = decodeHtmlEntities(value);
         entries[i][2] = playCountValue;
         i += 1;
     });
@@ -91,7 +92,7 @@ function getArtistsAttributes(body) {
         const valueEndIndex = body.indexOf('"', valueStartIndex + 1);
         const value = body.substring(valueStartIndex + 1, valueEndIndex);
 
-        entries.push(Array.of(value, undefined, undefined));
+        entries.push(Array.of(decodeHtmlEntities(value), undefined, undefined));
     });
 
     const artistMatches = [...body.matchAll(playCountClassPattern)];
@@ -134,7 +135,7 @@ function getTracksAttributes(body) {
         const valueEndIndex = body.indexOf('"', valueStartIndex + 1);
         const value = body.substring(valueStartIndex + 1, valueEndIndex);
 
-        entries.push(Array.of(value, undefined, undefined));
+        entries.push(Array.of(decodeHtmlEntities(value), undefined, undefined));
     });
 
     const artistMatches = [...body.matchAll(artistClassPattern)];
@@ -155,7 +156,7 @@ function getTracksAttributes(body) {
 
         const playCountValue = playCount.match(playCountPattern)[1];
 
-        entries[i][1] = value;
+        entries[i][1] = decodeHtmlEntities(value);
         entries[i][2] = playCountValue;
         i += 1;
     });
