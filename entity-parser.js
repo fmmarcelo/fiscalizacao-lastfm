@@ -10,7 +10,7 @@ function decodeHtmlEntities(s) {
         return s;
     }
 
-    return s.replace(/&(#?[\w]+);/, (match, capture) => {
+    return s.replace(/&(#?[\w]+);/g, (match, capture) => {
         if (capture[0] === '#') {
             const decodedChar = String.fromCharCode(capture.substring(1));
             return decodedChar === '\x00' ? match : decodedChar;
