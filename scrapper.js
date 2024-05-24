@@ -79,7 +79,7 @@ function getAlbumsAttributes(body) {
 
 function getArtistsAttributes(body) {
     let artistClassPattern = /grid-items-item-main-text/g;
-    let playCountClassPattern = /grid-items-item-aux-block/g;
+    let playCountClassPattern = /grid-items-item-aux-text/g;
     let playCountPattern = /([\d|,]+) play/;
 
     let entries = [];
