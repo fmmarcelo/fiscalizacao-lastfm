@@ -1,7 +1,6 @@
-const needle = require('needle');
+const { fetchMetrics } = require('./services/api');
+const { getEtag } = require('./utils/etag');
 const { decodeHtmlEntities } = require('./entity-parser');
-
-const urlTemplate = 'https://www.last.fm/user/$USER/partial/$INFO?$INFO_date_preset=$PERIOD';
 
 const attributeGetters = {
     'albums': getAlbumsAttributes,
@@ -9,28 +8,26 @@ const attributeGetters = {
     'tracks': getTracksAttributes
 }
 
-function getUrl(user, info, period) {
-    return urlTemplate.replace('$USER', user)
-    .replaceAll('$INFO', info)
-    .replace('$PERIOD', period);
-}
-
 async function getEntries(user, info, period, callback) {
-    const url = getUrl(user, info, period);
     let entries = [];
 
-    needle.get(url, (error, { body, statusCode } = {}) => {
-        if(error || statusCode !== 200) {
-            callback(entries);
-            return;
-        }
+    const etag = await getEtag();
 
-        const attributeGetter = attributeGetters[info];
+    if (!etag) {
+        return callback(entries);
+    }
 
-        entries = attributeGetter(body);
+    const metrics = await fetchMetrics(user, info, period, etag);
 
-        callback(entries);
-    });
+    if (metrics?.status !== true) {
+        return callback(entries);
+    }
+
+    const attributeGetter = attributeGetters[info];
+
+    entries = attributeGetter(body);
+
+    callback(entries);
 }
 
 function getAlbumsAttributes(body) {
