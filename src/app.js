@@ -140,7 +140,7 @@ const info = options[option];
 
 getEntries(user, info, periods[period], (entries) => {
     if(entries.length === 0) {
-        console.log('Unable to fetch ' + info + ' for user ' + user);
+        console.log(`Unable to fetch ${info} for user ${user}.`);
         process.exit(1);
     }
 
