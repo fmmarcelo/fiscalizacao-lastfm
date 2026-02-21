@@ -3,6 +3,9 @@
 ![Picture of a shiba inu wearing a cap with the message "Fiscalização Last.fm" embroidered in it.](/doge.png)
 
 CLI for listing a user's top albums, artists or tracks of a given period from Last.fm. It uses webscrapping so login is not needed.
+## Note
+
+This application is currently not working due to a change in Last.fm's servers. I might find a workaround in the future.
 
 ## Installation
 
